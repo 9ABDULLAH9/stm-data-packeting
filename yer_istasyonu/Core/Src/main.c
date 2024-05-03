@@ -132,9 +132,7 @@ int main(void)
 	LoRa_reset(&myLoRa);
 
 	if (200 == LoRa_init(&myLoRa))
-	{
 		HAL_UART_Transmit(&huart1, (uint8_t *) "LoRa_init _k", 128,500);
-	}
 	
 	srand(time(NULL));
 	
@@ -148,8 +146,6 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
-	
 	// SENDING DATA - - - - - - - - - - - - - - - - - - - - - - - - -
 
 	/*
