@@ -1,23 +1,22 @@
-21:11:55 **** Incremental Build of configuration Debug for project yer_istasyonu ****
+19:22:33 **** Incremental Build of configuration Debug for project yer_istasyonu ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/data_packet.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/data_packet.d" -MT"Core/Src/data_packet.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/data_packet.o"
-../Core/Src/data_packet.c: In function 'transmit_data_packet':
-../Core/Src/data_packet.c:28:45: warning: passing argument 2 of 'HAL_CRC_Calculate' from incompatible pointer type [-Wincompatible-pointer-types]
-   28 |     uint16_t crc = HAL_CRC_Calculate(&hcrc, buffer, 20); // 20 byte'lık buffer için CRC hesaplanıyor
-      |                                             ^~~~~~
-      |                                             |
-      |                                             uint8_t * {aka unsigned char *}
-In file included from ../Core/Inc/stm32g4xx_hal_conf.h:240,
-                 from ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Inc/data_packet.h:8,
-                 from ../Core/Src/data_packet.c:1:
-../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_crc.h:312:62: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  312 | uint32_t HAL_CRC_Calculate(CRC_HandleTypeDef *hcrc, uint32_t pBuffer[], uint32_t BufferLength);
-      |                                                     ~~~~~~~~~^~~~~~~~~
-../Core/Src/data_packet.c:35:12: warning: returning 'uint8_t *' {aka 'unsigned char *'} from a function with return type 'uint8_t' {aka 'unsigned char'} makes integer from pointer without a cast [-Wint-conversion]
-   35 |     return buffer; // Return değeri buffer
-      |            ^~~~~~
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:123:9: warning: implicit declaration of function 'Lora_SetDefaultConfig' [-Wimplicit-function-declaration]
+  123 |         Lora_SetDefaultConfig(&myLoRa);
+      |         ^~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:153:19: warning: implicit declaration of function 'transmit_data_packet' [-Wimplicit-function-declaration]
+  153 |         *buffer = transmit_data_packet(&my_data);
+      |                   ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:168:27: warning: pointer targets in passing argument 1 of 'strcpy' differ in signedness [-Wpointer-sign]
+  168 |         strcpy(write_data + 2, "Baklava");
+      |                ~~~~~~~~~~~^~~
+      |                           |
+      |                           uint8_t * {aka unsigned char *}
+In file included from ../Core/Src/main.c:30:
+C:\ST\STM32CubeIDE_1.14.1\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256\tools\bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/include/string.h:38:18: note: expected 'char * restrict' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+   38 | char    *strcpy (char *__restrict, const char *__restrict);
+      |                  ^
 arm-none-eabi-gcc -o "yer_istasyonu.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\merta\STM32CubeIDE\workspace_1.14.1\yer_istasyonu\yer_istasyonu\STM32G474CETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="yer_istasyonu.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 C:/ST/STM32CubeIDE_1.14.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeIDE_1.14.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-gettimeofdayr.o): in function `_gettimeofday_r':
 (.text._gettimeofday_r+0xe): warning: _gettimeofday is not implemented and will always fail
@@ -26,11 +25,11 @@ Finished building target: yer_istasyonu.elf
 arm-none-eabi-size  yer_istasyonu.elf 
 arm-none-eabi-objdump -h -S yer_istasyonu.elf  > "yer_istasyonu.list"
    text	   data	    bss	    dec	    hex	filename
-  28140	    104	   3264	  31508	   7b14	yer_istasyonu.elf
+  28304	    104	   3264	  31672	   7bb8	yer_istasyonu.elf
 Finished building: default.size.stdout
  
 Finished building: yer_istasyonu.list
  
 
-21:11:56 Build Finished. 0 errors, 3 warnings. (took 717ms)
+19:22:35 Build Finished. 0 errors, 4 warnings. (took 1s.968ms)
 

@@ -9,7 +9,7 @@
 
 
 void floatToUint8(float value, uint8_t *buffer, uint8_t i,
-						uint8_t ii, uint8_t iii, uint8_t iv)
+					uint8_t ii, uint8_t iii, uint8_t iv)
 {
     FloatUInt8Union unionVal;
     unionVal.f = value;
@@ -22,7 +22,7 @@ void floatToUint8(float value, uint8_t *buffer, uint8_t i,
 
 uint8_t transmit_data_packet(Data_packet* transmit_data)
 {
-    uint8_t buffer[18];
+    uint8_t buffer[20];
 	uint16_t altitude;
 	uint8_t bat_level;
 
@@ -30,7 +30,7 @@ uint8_t transmit_data_packet(Data_packet* transmit_data)
 
     altitude = (uint16_t)transmit_data->altitude;
     buffer[1] = (uint8_t)convert16bittoMSB(altitude); // Yüksek byte
-    buffer[2] = (uint8_t)convert16bittoLSB(altitude);        // Düşük byte
+    buffer[2] = (uint8_t)altitude;        // Düşük byte
 
 	floatToUint8(transmit_data->pressure, buffer, 3, 4, 5, 6);
 
@@ -42,12 +42,12 @@ uint8_t transmit_data_packet(Data_packet* transmit_data)
 	floatToUint8(transmit_data->longtitude, buffer, 12, 13, 14, 15);
 
     
-    uint16_t crc = HAL_CRC_Calculate(&hcrc, buffer, 16);
+    uint16_t crc = HAL_CRC_Calculate(&hcrc, buffer, 20); 
 
     buffer[16] = (uint8_t)convert16bittoMSB(crc); 
-    buffer[17] = (uint8_t)convert16bittoLSB(crc);
+    buffer[17] = (uint8_t)crc;        
 
     transmit_data->crc = crc; 
 
-    return (buffer);
+    return (&buffer); 
 }

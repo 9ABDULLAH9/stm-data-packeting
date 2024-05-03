@@ -21,6 +21,10 @@
 
 //
 #define convert8bitto16bit(x, y)  (((x) << 8) | (y))
+#define convert16bittoLSB(x) ((x) & 255)
+#define convert16bittoMSB(x) ((x) << 8)
+
+//typedef
 
 typedef struct data_packet
 {
@@ -33,7 +37,10 @@ typedef struct data_packet
 	uint16_t crc;
 }Data_packet;
 
-//typedef
+typedef union {
+    float f;
+    uint8_t u[4];
+} FloatUInt8Union;
 
 
 // Fonksiyon Prototipleri

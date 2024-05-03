@@ -42,10 +42,10 @@ uint8_t transmit_data_packet(Data_packet* transmit_data)
 	floatToUint8(transmit_data->longtitude, buffer, 12, 13, 14, 15);
 
     
-    uint16_t crc = HAL_CRC_Calculate(&hcrc, buffer, 16);
+    uint16_t crc = HAL_CRC_Calculate(&hcrc, buffer, 20); 
 
     buffer[16] = (uint8_t)convert16bittoMSB(crc); 
-    buffer[17] = (uint8_t)convert16bittoLSB(crc);
+    buffer[17] = (uint8_t)crc;        
 
     transmit_data->crc = crc; 
 

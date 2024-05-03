@@ -162,10 +162,10 @@ int main(void)
 	
 	// SENDING DATA - - - - - - - - - - - - - - - - - - - - - - - - -
 
-	/*write_data[0]=0x3B;
+	write_data[0]=0x3B;
 	write_data[1] = rand() % 100 + 1;
 
-	strcpy(write_data + 2, "Baklava");*/
+	strcpy(write_data + 2, "Baklava");
 
 	LoRa_transmit(&myLoRa, buffer, 18, 150);
 	HAL_Delay(150);
