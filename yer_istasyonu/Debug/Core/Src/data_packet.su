@@ -1,4 +1,0 @@
-../Core/Src/data_packet.c:10:6:floatToUint8	32	static
-../Core/Src/data_packet.c:22:10:transmit_data_packet	40	static
-../Core/Src/data_packet.c:87:10:ComputeCRC	24	static
-../Core/Src/data_packet.c:107:10:RF95_ComputeCRC	24	static

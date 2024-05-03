@@ -13,12 +13,18 @@
 
 // Dosya Adı ve Versiyon Bilgisi
 #define DOSYA_ADI "data_packet.h"
-#define VERSIYON "1.0"
+#define VERSIYON "2.0"
 
 // Yazar Bilgisi
 #define YAZAR "Mert"
 
 //
+//
+//
+//
+//
+//
+
 #define convert8bitto16bit(x, y)  (((x) << 8) | (y))
 #define convert16bittoLSB(x) ((x) & 255)
 #define convert16bittoMSB(x) ((x) >> 8)
@@ -47,7 +53,18 @@ typedef struct data_packet
 	float latitude;
 	float longtitude;
 	uint16_t crc;
-}Data_packet;
+}Data_packet_transmit;
+
+typedef struct data_packet
+{
+	uint8_t c_stat;//
+	uint16_t altitude;//
+	float pressure;//
+	uint8_t bat_level;//
+	float latitude;
+	float longtitude;
+	uint16_t crc;
+}Data_packet_recieve;
 
 typedef union {
     float f;
@@ -56,10 +73,12 @@ typedef union {
 
 
 // Fonksiyon Prototipleri
-uint8_t *transmit_data_packet(Data_packet* transmit_data, uint8_t *buffer);
+uint8_t *transmit_data_packet(Data_packet_transmit* transmit_data, uint8_t *buffer);
+uint8_t *recive_data_packet(Data_packet_recieve* recieve_data, uint8_t *buffer);
 uint16_t RF95_ComputeCRC(uint8_t *buffer, uint8_t bufferLength, uint8_t crcType);
 uint16_t ComputeCRC(uint16_t crc, uint8_t data, uint16_t polynomial);
-void floatToUint8(float value, uint8_t *buffer, uint8_t i,
-						uint8_t ii, uint8_t iii, uint8_t iv);
+void floatToUint8(float value, uint8_t *buffer, uint8_t i);
+float uInt8ToFloat(float* value, uint8_t *buffer, uint8_t i);
+
 
 #endif // FUNCTION_H

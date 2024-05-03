@@ -1,242 +1,20 @@
-21:17:18 **** Incremental Build of configuration Debug for project yer_istasyonu ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:124:9: warning: implicit declaration of function 'Lora_SetDefaultConfig' [-Wimplicit-function-declaration]
-  124 |         Lora_SetDefaultConfig(&myLoRa);
-      |         ^~~~~~~~~~~~~~~~~~~~~
-../Core/Src/main.c:178:45: warning: passing argument 2 of 'HAL_CRC_Calculate' from incompatible pointer type [-Wincompatible-pointer-types]
-  178 |     uint16_t crc = HAL_CRC_Calculate(&hcrc, (uint8_t*)buffer, 16);
-      |                                             ^~~~~~~~~~~~~~~~
-      |                                             |
-      |                                             uint8_t * {aka unsigned char *}
-In file included from ../Core/Inc/stm32g4xx_hal_conf.h:240,
-                 from ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Src/main.c:20:
-../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_crc.h:312:62: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  312 | uint32_t HAL_CRC_Calculate(CRC_HandleTypeDef *hcrc, uint32_t pBuffer[], uint32_t BufferLength);
-      |                                                     ~~~~~~~~~^~~~~~~~~
-arm-none-eabi-gcc -o "yer_istasyonu.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\merta\STM32CubeIDE\workspace_1.14.1\yer_istasyonu\yer_istasyonu\STM32G474CETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="yer_istasyonu.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-C:/ST/STM32CubeIDE_1.14.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeIDE_1.14.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-gettimeofdayr.o): in function `_gettimeofday_r':
-(.text._gettimeofday_r+0xe): warning: _gettimeofday is not implemented and will always fail
-Finished building target: yer_istasyonu.elf
- 
-arm-none-eabi-size  yer_istasyonu.elf 
-arm-none-eabi-objdump -h -S yer_istasyonu.elf  > "yer_istasyonu.list"
-   text	   data	    bss	    dec	    hex	filename
-  28068	    104	   3240	  31412	   7ab4	yer_istasyonu.elf
-Finished building: default.size.stdout
- 
-Finished building: yer_istasyonu.list
- 
-21:17:25 **** Incremental Build of configuration Debug for project yer_istasyonu ****
-make -j16 all 
-arm-none-eabi-size  yer_istasyonu.elf 
-   text	   data	    bss	    dec	    hex	filename
-  28068	    104	   3240	  31412	   7ab4	yer_istasyonu.elf
-Finished building: default.size.stdout
- 
-21:18:14 **** Incremental Build of configuration Debug for project yer_istasyonu ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:124:9: warning: implicit declaration of function 'Lora_SetDefaultConfig' [-Wimplicit-function-declaration]
-  124 |         Lora_SetDefaultConfig(&myLoRa);
-      |         ^~~~~~~~~~~~~~~~~~~~~
-../Core/Src/main.c:178:45: warning: passing argument 2 of 'HAL_CRC_Calculate' from incompatible pointer type [-Wincompatible-pointer-types]
-  178 |     uint16_t crc = HAL_CRC_Calculate(&hcrc, (uint8_t*)buffer, 16);
-      |                                             ^~~~~~~~~~~~~~~~
-      |                                             |
-      |                                             uint8_t * {aka unsigned char *}
-In file included from ../Core/Inc/stm32g4xx_hal_conf.h:240,
-                 from ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Src/main.c:20:
-../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_crc.h:312:62: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  312 | uint32_t HAL_CRC_Calculate(CRC_HandleTypeDef *hcrc, uint32_t pBuffer[], uint32_t BufferLength);
-      |                                                     ~~~~~~~~~^~~~~~~~~
-arm-none-eabi-gcc -o "yer_istasyonu.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\merta\STM32CubeIDE\workspace_1.14.1\yer_istasyonu\yer_istasyonu\STM32G474CETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="yer_istasyonu.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-C:/ST/STM32CubeIDE_1.14.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeIDE_1.14.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-gettimeofdayr.o): in function `_gettimeofday_r':
-(.text._gettimeofday_r+0xe): warning: _gettimeofday is not implemented and will always fail
-Finished building target: yer_istasyonu.elf
- 
-arm-none-eabi-size  yer_istasyonu.elf 
-arm-none-eabi-objdump -h -S yer_istasyonu.elf  > "yer_istasyonu.list"
-   text	   data	    bss	    dec	    hex	filename
-  28068	    104	   3240	  31412	   7ab4	yer_istasyonu.elf
-Finished building: default.size.stdout
- 
-Finished building: yer_istasyonu.list
- 
-21:36:44 **** Incremental Build of configuration Debug for project yer_istasyonu ****
+23:14:38 **** Incremental Build of configuration Debug for project yer_istasyonu ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/data_packet.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/data_packet.d" -MT"Core/Src/data_packet.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/data_packet.o"
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/data_packet.c: In function 'transmit_data_packet':
-../Core/Src/data_packet.c:44:45: warning: passing argument 2 of 'HAL_CRC_Calculate' from incompatible pointer type [-Wincompatible-pointer-types]
-   44 |     uint16_t crc = HAL_CRC_Calculate(&hcrc, buffer, 16);
-      |                                             ^~~~~~
-      |                                             |
-      |                                             uint8_t * {aka unsigned char *}
-In file included from ../Core/Inc/stm32g4xx_hal_conf.h:240,
-                 from ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Inc/data_packet.h:7,
-                 from ../Core/Src/data_packet.c:1:
-../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_crc.h:312:62: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  312 | uint32_t HAL_CRC_Calculate(CRC_HandleTypeDef *hcrc, uint32_t pBuffer[], uint32_t BufferLength);
-      |                                                     ~~~~~~~~~^~~~~~~~~
-../Core/Src/data_packet.c:51:12: warning: function returns address of local variable [-Wreturn-local-addr]
-   51 |     return (buffer);
-      |            ^
-../Core/Src/data_packet.c: In function 'recive_data_packet':
-../Core/Src/data_packet.c:77:45: warning: passing argument 2 of 'HAL_CRC_Calculate' from incompatible pointer type [-Wincompatible-pointer-types]
-   77 |     uint16_t crc = HAL_CRC_Calculate(&hcrc, buffer, 16);
-      |                                             ^~~~~~
-      |                                             |
-      |                                             uint8_t * {aka unsigned char *}
-../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_crc.h:312:62: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  312 | uint32_t HAL_CRC_Calculate(CRC_HandleTypeDef *hcrc, uint32_t pBuffer[], uint32_t BufferLength);
-      |                                                     ~~~~~~~~~^~~~~~~~~
-../Core/Src/data_packet.c: In function 'RF95_ComputeCRC':
-../Core/Src/data_packet.c:98:23: warning: implicit declaration of function 'ComputeCRC'; did you mean 'RF95_ComputeCRC'? [-Wimplicit-function-declaration]
-   98 |                 crc = ComputeCRC(crc, buffer[i], polynomial);
-      |                       ^~~~~~~~~~
-      |                       RF95_ComputeCRC
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:124:9: warning: implicit declaration of function 'Lora_SetDefaultConfig' [-Wimplicit-function-declaration]
-  124 |         Lora_SetDefaultConfig(&myLoRa);
-      |         ^~~~~~~~~~~~~~~~~~~~~
-../Core/Src/main.c:178:20: warning: implicit declaration of function 'RF95_ComputeCRC' [-Wimplicit-function-declaration]
-  178 |     uint16_t crc = RF95_ComputeCRC((uint8_t*)buffer, 16, CRC_TYPE_IBM);
-      |                    ^~~~~~~~~~~~~~~
-arm-none-eabi-gcc -o "yer_istasyonu.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\merta\STM32CubeIDE\workspace_1.14.1\yer_istasyonu\yer_istasyonu\STM32G474CETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="yer_istasyonu.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-C:/ST/STM32CubeIDE_1.14.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeIDE_1.14.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-gettimeofdayr.o): in function `_gettimeofday_r':
-(.text._gettimeofday_r+0xe): warning: _gettimeofday is not implemented and will always fail
-C:/ST/STM32CubeIDE_1.14.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/data_packet.o: in function `RF95_ComputeCRC':
-C:/Users/merta/STM32CubeIDE/workspace_1.14.1/yer_istasyonu/yer_istasyonu/Debug/../Core/Src/data_packet.c:98: undefined reference to `ComputeCRC'
-collect2.exe: error: ld returned 1 exit status
-make: *** [makefile:64: yer_istasyonu.elf] Error 1
-"make -j16 all" terminated with exit code 2. Build might be incomplete.
-21:37:20 **** Incremental Build of configuration Debug for project yer_istasyonu ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/data_packet.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/data_packet.d" -MT"Core/Src/data_packet.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/data_packet.o"
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/data_packet.c: In function 'transmit_data_packet':
-../Core/Src/data_packet.c:44:45: warning: passing argument 2 of 'HAL_CRC_Calculate' from incompatible pointer type [-Wincompatible-pointer-types]
-   44 |     uint16_t crc = HAL_CRC_Calculate(&hcrc, buffer, 16);
-      |                                             ^~~~~~
-      |                                             |
-      |                                             uint8_t * {aka unsigned char *}
-In file included from ../Core/Inc/stm32g4xx_hal_conf.h:240,
-                 from ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Inc/data_packet.h:7,
-                 from ../Core/Src/data_packet.c:1:
-../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_crc.h:312:62: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  312 | uint32_t HAL_CRC_Calculate(CRC_HandleTypeDef *hcrc, uint32_t pBuffer[], uint32_t BufferLength);
-      |                                                     ~~~~~~~~~^~~~~~~~~
-../Core/Src/data_packet.c:51:12: warning: function returns address of local variable [-Wreturn-local-addr]
-   51 |     return (buffer);
-      |            ^
-../Core/Src/data_packet.c: In function 'recive_data_packet':
-../Core/Src/data_packet.c:77:45: warning: passing argument 2 of 'HAL_CRC_Calculate' from incompatible pointer type [-Wincompatible-pointer-types]
-   77 |     uint16_t crc = HAL_CRC_Calculate(&hcrc, buffer, 16);
-      |                                             ^~~~~~
-      |                                             |
-      |                                             uint8_t * {aka unsigned char *}
-../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_crc.h:312:62: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  312 | uint32_t HAL_CRC_Calculate(CRC_HandleTypeDef *hcrc, uint32_t pBuffer[], uint32_t BufferLength);
-      |                                                     ~~~~~~~~~^~~~~~~~~
-../Core/Src/data_packet.c: In function 'RF95_ComputeCRC':
-../Core/Src/data_packet.c:98:23: warning: implicit declaration of function 'ComputeCRC'; did you mean 'RF95_ComputeCRC'? [-Wimplicit-function-declaration]
-   98 |                 crc = ComputeCRC(crc, buffer[i], polynomial);
-      |                       ^~~~~~~~~~
-      |                       RF95_ComputeCRC
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:124:9: warning: implicit declaration of function 'Lora_SetDefaultConfig' [-Wimplicit-function-declaration]
-  124 |         Lora_SetDefaultConfig(&myLoRa);
-      |         ^~~~~~~~~~~~~~~~~~~~~
-arm-none-eabi-gcc -o "yer_istasyonu.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\merta\STM32CubeIDE\workspace_1.14.1\yer_istasyonu\yer_istasyonu\STM32G474CETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="yer_istasyonu.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-C:/ST/STM32CubeIDE_1.14.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeIDE_1.14.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-gettimeofdayr.o): in function `_gettimeofday_r':
-(.text._gettimeofday_r+0xe): warning: _gettimeofday is not implemented and will always fail
-C:/ST/STM32CubeIDE_1.14.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/data_packet.o: in function `RF95_ComputeCRC':
-C:/Users/merta/STM32CubeIDE/workspace_1.14.1/yer_istasyonu/yer_istasyonu/Debug/../Core/Src/data_packet.c:98: undefined reference to `ComputeCRC'
-collect2.exe: error: ld returned 1 exit status
-make: *** [makefile:64: yer_istasyonu.elf] Error 1
-"make -j16 all" terminated with exit code 2. Build might be incomplete.
-21:38:27 **** Incremental Build of configuration Debug for project yer_istasyonu ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/data_packet.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/data_packet.d" -MT"Core/Src/data_packet.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/data_packet.o"
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/data_packet.c: In function 'transmit_data_packet':
-../Core/Src/data_packet.c:44:45: warning: passing argument 2 of 'HAL_CRC_Calculate' from incompatible pointer type [-Wincompatible-pointer-types]
-   44 |     uint16_t crc = HAL_CRC_Calculate(&hcrc, buffer, 16);
-      |                                             ^~~~~~
-      |                                             |
-      |                                             uint8_t * {aka unsigned char *}
-In file included from ../Core/Inc/stm32g4xx_hal_conf.h:240,
-                 from ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Inc/data_packet.h:7,
-                 from ../Core/Src/data_packet.c:1:
-../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_crc.h:312:62: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  312 | uint32_t HAL_CRC_Calculate(CRC_HandleTypeDef *hcrc, uint32_t pBuffer[], uint32_t BufferLength);
-      |                                                     ~~~~~~~~~^~~~~~~~~
-../Core/Src/data_packet.c:51:12: warning: function returns address of local variable [-Wreturn-local-addr]
-   51 |     return (buffer);
-      |            ^
-../Core/Src/data_packet.c: In function 'recive_data_packet':
-../Core/Src/data_packet.c:77:45: warning: passing argument 2 of 'HAL_CRC_Calculate' from incompatible pointer type [-Wincompatible-pointer-types]
-   77 |     uint16_t crc = HAL_CRC_Calculate(&hcrc, buffer, 16);
-      |                                             ^~~~~~
-      |                                             |
-      |                                             uint8_t * {aka unsigned char *}
-../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_crc.h:312:62: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  312 | uint32_t HAL_CRC_Calculate(CRC_HandleTypeDef *hcrc, uint32_t pBuffer[], uint32_t BufferLength);
-      |                                                     ~~~~~~~~~^~~~~~~~~
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:124:9: warning: implicit declaration of function 'Lora_SetDefaultConfig' [-Wimplicit-function-declaration]
-  124 |         Lora_SetDefaultConfig(&myLoRa);
-      |         ^~~~~~~~~~~~~~~~~~~~~
-arm-none-eabi-gcc -o "yer_istasyonu.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\merta\STM32CubeIDE\workspace_1.14.1\yer_istasyonu\yer_istasyonu\STM32G474CETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="yer_istasyonu.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-C:/ST/STM32CubeIDE_1.14.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeIDE_1.14.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-gettimeofdayr.o): in function `_gettimeofday_r':
-(.text._gettimeofday_r+0xe): warning: _gettimeofday is not implemented and will always fail
-Finished building target: yer_istasyonu.elf
- 
-arm-none-eabi-size  yer_istasyonu.elf 
-arm-none-eabi-objdump -h -S yer_istasyonu.elf  > "yer_istasyonu.list"
-   text	   data	    bss	    dec	    hex	filename
-  27724	    104	   3240	  31068	   795c	yer_istasyonu.elf
-Finished building: default.size.stdout
- 
-Finished building: yer_istasyonu.list
- 
-21:38:56 **** Incremental Build of configuration Debug for project yer_istasyonu ****
-make -j16 all 
-arm-none-eabi-size  yer_istasyonu.elf 
-   text	   data	    bss	    dec	    hex	filename
-  27724	    104	   3240	  31068	   795c	yer_istasyonu.elf
-Finished building: default.size.stdout
- 
-22:00:21 **** Incremental Build of configuration Debug for project yer_istasyonu ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/data_packet.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/data_packet.d" -MT"Core/Src/data_packet.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/data_packet.o"
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/data_packet.c:22:10: error: conflicting types for 'transmit_data_packet'; have 'uint8_t *(Data_packet *, uint8_t *)' {aka 'unsigned char *(struct data_packet *, unsigned char *)'}
-   22 | uint8_t *transmit_data_packet(Data_packet* transmit_data, uint8_t *buffer)
-      |          ^~~~~~~~~~~~~~~~~~~~
 In file included from ../Core/Src/data_packet.c:1:
-../Core/Inc/data_packet.h:59:10: note: previous declaration of 'transmit_data_packet' with type 'uint8_t *(Data_packet *)' {aka 'unsigned char *(struct data_packet *)'}
-   59 | uint8_t *transmit_data_packet(Data_packet* transmit_data);
-      |          ^~~~~~~~~~~~~~~~~~~~
-../Core/Src/data_packet.c: In function 'transmit_data_packet':
-../Core/Src/data_packet.c:44:45: warning: passing argument 2 of 'HAL_CRC_Calculate' from incompatible pointer type [-Wincompatible-pointer-types]
-   44 |     uint16_t crc = HAL_CRC_Calculate(&hcrc, buffer, 16);
-      |                                             ^~~~~~
-      |                                             |
-      |                                             uint8_t * {aka unsigned char *}
+../Core/Inc/data_packet.h:52:16: error: redefinition of 'struct data_packet'
+   52 | typedef struct data_packet
+      |                ^~~~~~~~~~~
+../Core/Inc/data_packet.h:41:16: note: originally defined here
+   41 | typedef struct data_packet
+      |                ^~~~~~~~~~~
+../Core/Src/data_packet.c: In function 'recive_data_packet':
+../Core/Src/data_packet.c:70:49: warning: passing argument 2 of 'HAL_CRC_Calculate' from incompatible pointer type [-Wincompatible-pointer-types]
+   70 |         uint16_t crc = HAL_CRC_Calculate(&hcrc, buffer, 16);
+      |                                                 ^~~~~~
+      |                                                 |
+      |                                                 uint8_t * {aka unsigned char *}
 In file included from ../Core/Inc/stm32g4xx_hal_conf.h:240,
                  from ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:29,
                  from ../Core/Inc/main.h:30,
@@ -244,83 +22,21 @@ In file included from ../Core/Inc/stm32g4xx_hal_conf.h:240,
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_crc.h:312:62: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
   312 | uint32_t HAL_CRC_Calculate(CRC_HandleTypeDef *hcrc, uint32_t pBuffer[], uint32_t BufferLength);
       |                                                     ~~~~~~~~~^~~~~~~~~
+../Core/Src/data_packet.c:92:12: warning: returning 'int' from a function with return type 'uint8_t *' {aka 'unsigned char *'} makes pointer from integer without a cast [-Wint-conversion]
+   92 |     return (1);
+      |            ^
 make: *** [Core/Src/subdir.mk:55: Core/Src/data_packet.o] Error 1
 make: *** Waiting for unfinished jobs....
+In file included from ../Core/Src/main.c:34:
+../Core/Inc/data_packet.h:52:16: error: redefinition of 'struct data_packet'
+   52 | typedef struct data_packet
+      |                ^~~~~~~~~~~
+../Core/Inc/data_packet.h:41:16: note: originally defined here
+   41 | typedef struct data_packet
+      |                ^~~~~~~~~~~
 ../Core/Src/main.c: In function 'main':
 ../Core/Src/main.c:124:9: warning: implicit declaration of function 'Lora_SetDefaultConfig' [-Wimplicit-function-declaration]
   124 |         Lora_SetDefaultConfig(&myLoRa);
       |         ^~~~~~~~~~~~~~~~~~~~~
-../Core/Src/main.c:154:9: error: too many arguments to function 'transmit_data_packet'
-  154 |         transmit_data_packet(&my_data, buffer);
-      |         ^~~~~~~~~~~~~~~~~~~~
-In file included from ../Core/Src/main.c:34:
-../Core/Inc/data_packet.h:59:10: note: declared here
-   59 | uint8_t *transmit_data_packet(Data_packet* transmit_data);
-      |          ^~~~~~~~~~~~~~~~~~~~
 make: *** [Core/Src/subdir.mk:55: Core/Src/main.o] Error 1
 "make -j16 all" terminated with exit code 2. Build might be incomplete.
-22:01:15 **** Incremental Build of configuration Debug for project yer_istasyonu ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/data_packet.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/data_packet.d" -MT"Core/Src/data_packet.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/data_packet.o"
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/data_packet.c: In function 'transmit_data_packet':
-../Core/Src/data_packet.c:44:45: warning: passing argument 2 of 'HAL_CRC_Calculate' from incompatible pointer type [-Wincompatible-pointer-types]
-   44 |     uint16_t crc = HAL_CRC_Calculate(&hcrc, buffer, 16);
-      |                                             ^~~~~~
-      |                                             |
-      |                                             uint8_t * {aka unsigned char *}
-In file included from ../Core/Inc/stm32g4xx_hal_conf.h:240,
-                 from ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Inc/data_packet.h:7,
-                 from ../Core/Src/data_packet.c:1:
-../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_crc.h:312:62: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
-  312 | uint32_t HAL_CRC_Calculate(CRC_HandleTypeDef *hcrc, uint32_t pBuffer[], uint32_t BufferLength);
-      |                                                     ~~~~~~~~~^~~~~~~~~
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:124:9: warning: implicit declaration of function 'Lora_SetDefaultConfig' [-Wimplicit-function-declaration]
-  124 |         Lora_SetDefaultConfig(&myLoRa);
-      |         ^~~~~~~~~~~~~~~~~~~~~
-arm-none-eabi-gcc -o "yer_istasyonu.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\merta\STM32CubeIDE\workspace_1.14.1\yer_istasyonu\yer_istasyonu\STM32G474CETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="yer_istasyonu.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-C:/ST/STM32CubeIDE_1.14.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeIDE_1.14.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-gettimeofdayr.o): in function `_gettimeofday_r':
-(.text._gettimeofday_r+0xe): warning: _gettimeofday is not implemented and will always fail
-Finished building target: yer_istasyonu.elf
- 
-arm-none-eabi-size  yer_istasyonu.elf 
-arm-none-eabi-objdump -h -S yer_istasyonu.elf  > "yer_istasyonu.list"
-   text	   data	    bss	    dec	    hex	filename
-  28116	    104	   3240	  31460	   7ae4	yer_istasyonu.elf
-Finished building: default.size.stdout
- 
-Finished building: yer_istasyonu.list
- 
-22:01:36 **** Incremental Build of configuration Debug for project yer_istasyonu ****
-make -j16 all 
-arm-none-eabi-size  yer_istasyonu.elf 
-   text	   data	    bss	    dec	    hex	filename
-  28116	    104	   3240	  31460	   7ae4	yer_istasyonu.elf
-Finished building: default.size.stdout
- 
-22:02:40 **** Incremental Build of configuration Debug for project yer_istasyonu ****
-make -j16 all 
-arm-none-eabi-size  yer_istasyonu.elf 
-   text	   data	    bss	    dec	    hex	filename
-  28116	    104	   3240	  31460	   7ae4	yer_istasyonu.elf
-Finished building: default.size.stdout
- 
-22:07:13 **** Incremental Build of configuration Debug for project yer_istasyonu ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/data_packet.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32G474xx -c -I../Core/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc -I../Drivers/STM32G4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32G4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/data_packet.d" -MT"Core/Src/data_packet.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/data_packet.o"
-arm-none-eabi-gcc -o "yer_istasyonu.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\merta\STM32CubeIDE\workspace_1.14.1\yer_istasyonu\yer_istasyonu\STM32G474CETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="yer_istasyonu.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-C:/ST/STM32CubeIDE_1.14.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: C:/ST/STM32CubeIDE_1.14.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-gettimeofdayr.o): in function `_gettimeofday_r':
-(.text._gettimeofday_r+0xe): warning: _gettimeofday is not implemented and will always fail
-Finished building target: yer_istasyonu.elf
- 
-arm-none-eabi-size  yer_istasyonu.elf 
-arm-none-eabi-objdump -h -S yer_istasyonu.elf  > "yer_istasyonu.list"
-   text	   data	    bss	    dec	    hex	filename
-  27776	    104	   3240	  31120	   7990	yer_istasyonu.elf
-Finished building: default.size.stdout
- 
-Finished building: yer_istasyonu.list
- 

@@ -7,19 +7,31 @@
 #include "gpio.h"
 
 
-void floatToUint8(float value, uint8_t *buffer, uint8_t i,
-						uint8_t ii, uint8_t iii, uint8_t iv)
+void floatToUint8(float value, uint8_t *buffer, uint8_t i)
 {
     FloatUInt8Union unionVal;
     unionVal.f = value;
-    
+
     buffer[i] = unionVal.u[0];
-    buffer[ii] = unionVal.u[1];
-	buffer[iii] = unionVal.u[2];
-    buffer[iv] = unionVal.u[3];
+    buffer[i+1] = unionVal.u[1];
+	buffer[i+2] = unionVal.u[2];
+    buffer[i+3] = unionVal.u[3];
 }
 
-uint8_t *transmit_data_packet(Data_packet* transmit_data, uint8_t *buffer)
+float uInt8ToFloat(float* value, uint8_t *buffer, uint8_t i)
+{
+    FloatUInt8Union unionVal;
+
+    unionVal.u[0] = buffer[i];
+    unionVal.u[1] = buffer[i+1];
+	unionVal.u[2] = buffer[i+2];
+    unionVal.u[3] = buffer[i+3];
+
+	value = &unionVal.f;
+	return(unionVal.f);
+}
+
+uint8_t *transmit_data_packet(Data_packet_transmit* transmit_data, uint8_t *buffer)
 {
     
 	uint16_t altitude;
@@ -28,19 +40,19 @@ uint8_t *transmit_data_packet(Data_packet* transmit_data, uint8_t *buffer)
     buffer[0] = transmit_data->c_stat;
 
     altitude = (uint16_t)transmit_data->altitude;
-    buffer[1] = (uint8_t)convert16bittoMSB(altitude); // Yüksek byte
+    buffer[1] = (uint8_t)convert16bittoMSB(altitude); 		 // Yüksek byte
     buffer[2] = (uint8_t)convert16bittoLSB(altitude);        // Düşük byte
 
-	floatToUint8(transmit_data->pressure, buffer, 3, 4, 5, 6);
+	floatToUint8(transmit_data->pressure, buffer, 3);
 
 	bat_level = (uint8_t)transmit_data->bat_level;
     buffer[7] = bat_level;
 
-	floatToUint8(transmit_data->latitude, buffer, 8, 9, 10, 11);
+	floatToUint8(transmit_data->latitude, buffer, 8);
 
-	floatToUint8(transmit_data->longtitude, buffer, 12, 13, 14, 15);
+	floatToUint8(transmit_data->longtitude, buffer, 12);
 
-    
+
 	int16_t crc = RF95_ComputeCRC((uint8_t*)buffer, 16, CRC_TYPE_IBM);
 
     buffer[16] = (uint8_t)convert16bittoMSB(crc); 
@@ -53,36 +65,32 @@ uint8_t *transmit_data_packet(Data_packet* transmit_data, uint8_t *buffer)
 
 
 
-/*uint8_t *recive_data_packet(Data_packet* recieve_data, uint8_t buffer[18])
+uint8_t *recive_data_packet(Data_packet_recieve* recieve_data, uint8_t *buffer)
 {
-	uint16_t altitude;
-	uint8_t bat_level;
+	uint16_t crc = RF95_ComputeCRC((uint8_t*)buffer, 16, CRC_TYPE_IBM);
+	uint16_t crc_control = convert8bitto16bit(buffer[17], buffer[16]);
 
-    buffer[0] = recieve_data->c_stat;
+	if (crc == crc_control)
+	{
+		recieve_data->c_stat = buffer[0];
 
-    altitude = (uint16_t)recieve_data->altitude;
-    buffer[1] = (uint8_t)convert16bittoMSB(altitude); // Yüksek byte
-    buffer[2] = (uint8_t)convert16bittoLSB(altitude);        // Düşük byte
+		recieve_data->altitude = convert8bitto16bit(buffer[1], buffer[2]);
 
-	floatToUint8(recieve_data->pressure, buffer, 3, 4, 5, 6);
+		uInt8ToFloat(&(recieve_data->pressure), buffer, 3);
 
-	bat_level = (uint8_t)recieve_data->bat_level;
-    buffer[7] = bat_level;
+		recieve_data->bat_level = (uint8_t)buffer[7];
 
-	floatToUint8(recieve_data->latitude, buffer, 8, 9, 10, 11);
+		uInt8ToFloat(&(recieve_data->latitude), buffer, 8);
 
-	floatToUint8(recieve_data->longtitude, buffer, 12, 13, 14, 15);
+		uInt8ToFloat(&(recieve_data->longtitude), buffer, 12);
 
-    
-    uint16_t crc = HAL_CRC_Calculate(&hcrc, buffer, 16);
-
-    buffer[16] = (uint8_t)convert16bittoMSB(crc); 
-    buffer[17] = (uint8_t)convert16bittoLSB(crc);
-
-    recieve_data->crc = crc;
-
-    return (buffer);
-}*/
+		return(0);
+	}
+	else
+	{
+    	return (1);
+	}
+}
 
 uint16_t ComputeCRC(uint16_t crc, uint8_t data, uint16_t polynomial)
 {

@@ -166,12 +166,12 @@ int main(void)
 
 	strcpy(write_data + 2, "Baklava");*/
 
-	Data_packet_transmit my_data = {.c_stat = 1, .altitude = 3131.657, .pressure = 1024.567, 
+	Data_packet my_data = {.c_stat = 1, .altitude = 3131.657, .pressure = 1024.567, 
 	.bat_level = rand() % 100 + 1, .latitude = 30.865, .longtitude = 21.722};
 	transmit_data_packet(&my_data, buffer);
 
 	LoRa_transmit(&myLoRa, buffer, 18, 150);
-	HAL_Delay(3500);
+	HAL_Delay(150);
 
     /* USER CODE END WHILE */
 
