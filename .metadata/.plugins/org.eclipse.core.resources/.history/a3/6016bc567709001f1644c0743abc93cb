@@ -53,7 +53,7 @@ uint8_t *transmit_data_packet(Data_packet* transmit_data)
 
 
 
-/*uint8_t *recive_data_packet(Data_packet* recieve_data, uint8_t buffer[18])
+uint8_t *recive_data_packet(Data_packet* recieve_data, uint8_t buffer[18])
 {
 	uint16_t altitude;
 	uint8_t bat_level;
@@ -79,51 +79,7 @@ uint8_t *transmit_data_packet(Data_packet* transmit_data)
     buffer[16] = (uint8_t)convert16bittoMSB(crc); 
     buffer[17] = (uint8_t)convert16bittoLSB(crc);
 
-    recieve_data->crc = crc;
+    transmit_data->crc = crc; 
 
     return (buffer);
-}*/
-
-uint16_t ComputeCRC(uint16_t crc, uint8_t data, uint16_t polynomial)
-{
-	uint8_t i;
-	for(i = 0; i < 8; i++)
-	{
-		if((((crc & 0x8000) >> 8) | (data & 0x80)) != 0)
-		{
-			crc <<= 1;
-			crc |= polynomial;
-		}
-		else
-		{
-			crc <<= 1;
-		}
-		data <<= 1;
-	}
-	return crc;
-}
-
-
-uint16_t RF95_ComputeCRC(uint8_t *buffer, uint8_t bufferLength, uint8_t crcType)
-{
-	uint8_t i;
-	uint16_t crc;
-	uint16_t polynomial;
-
-	polynomial = (crcType == CRC_TYPE_IBM) ? POLYNOMIAL_IBM : POLYNOMIAL_CCITT;
-	crc = (crcType == CRC_TYPE_IBM) ? CRC_IBM_SEED : CRC_CCITT_SEED;
-
-	for(i = 0; i < bufferLength; i++)
-	{
-		crc = ComputeCRC(crc, buffer[i], polynomial);
-	}
-
-	if(crcType == CRC_TYPE_IBM)
-	{
-		return crc;
-	}
-	else
-	{
-		return (uint16_t)(~crc);
-	}
 }

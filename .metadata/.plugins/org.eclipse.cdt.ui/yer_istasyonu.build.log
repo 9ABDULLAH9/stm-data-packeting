@@ -1,10 +1,10 @@
-20:25:26 **** Incremental Build of configuration Debug for project yer_istasyonu ****
+21:38:56 **** Incremental Build of configuration Debug for project yer_istasyonu ****
 make -j16 all 
 arm-none-eabi-size  yer_istasyonu.elf 
    text	   data	    bss	    dec	    hex	filename
-  28108	    104	   3240	  31452	   7adc	yer_istasyonu.elf
+  27724	    104	   3240	  31068	   795c	yer_istasyonu.elf
 Finished building: default.size.stdout
  
 
-20:25:27 Build Finished. 0 errors, 0 warnings. (took 252ms)
+21:38:56 Build Finished. 0 errors, 0 warnings. (took 192ms)
 

@@ -175,7 +175,7 @@ int main(void)
 	floatToUint8(transmit_data.longtitude, buffer, 12, 13, 14, 15);
 
     
-    uint16_t crc = RF95_ComputeCRC((uint8_t*)buffer, 16, CRC_TYPE_IBM);
+    uint16_t crc = HAL_CRC_Calculate(&hcrc, (uint32_t*)buffer, 15);
 
     buffer[16] = (uint8_t)convert16bittoMSB(crc);
     buffer[17] = (uint8_t)convert16bittoLSB(crc);
