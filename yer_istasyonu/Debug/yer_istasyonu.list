@@ -21,31 +21,31 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
   8 .data         00000068  20000000  08006d08  00008000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          000006a8  20000068  08006d70  00008068  2**2
+  9 .bss          000006b4  20000068  08006d70  00008068  2**2
                   ALLOC
- 10 ._user_heap_stack 00000600  20000710  08006d70  00008710  2**0
+ 10 ._user_heap_stack 00000604  2000071c  08006d70  0000871c  2**0
                   ALLOC
  11 .ARM.attributes 00000030  00000000  00000000  00008068  2**0
                   CONTENTS, READONLY
- 12 .debug_info   0001529c  00000000  00000000  00008098  2**0
+ 12 .debug_info   00015338  00000000  00000000  00008098  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 000035e7  00000000  00000000  0001d334  2**0
+ 13 .debug_abbrev 000035d9  00000000  00000000  0001d3d0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 000010c0  00000000  00000000  00020920  2**3
+ 14 .debug_aranges 000010d0  00000000  00000000  000209b0  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_rnglists 00000cac  00000000  00000000  000219e0  2**0
+ 15 .debug_rnglists 00000cb9  00000000  00000000  00021a80  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  000281a8  00000000  00000000  0002268c  2**0
+ 16 .debug_macro  000281a8  00000000  00000000  00022739  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00017660  00000000  00000000  0004a834  2**0
+ 17 .debug_line   000176d5  00000000  00000000  0004a8e1  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000f1c3f  00000000  00000000  00061e94  2**0
+ 18 .debug_str    000f1c9d  00000000  00000000  00061fb6  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  00153ad3  2**0
+ 19 .comment      00000043  00000000  00000000  00153c53  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00004de8  00000000  00000000  00153b18  2**2
+ 20 .debug_frame  00004e34  00000000  00000000  00153c98  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000077  00000000  00000000  00158900  2**0
+ 21 .debug_line_str 00000077  00000000  00000000  00158acc  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -2599,8 +2599,11 @@ void floatToUint8(float value, uint8_t *buffer, uint8_t i)
  80016e8:	4770      	bx	lr
 
 080016ea <transmit_data_packet>:
+	value = &unionVal.f;
+	return(unionVal.f);
+}
 
-uint8_t *transmit_data_packet(Data_packet* transmit_data, uint8_t *buffer)
+uint8_t *transmit_data_packet(Data_packet_transmit* transmit_data, uint8_t *buffer)
 {
  80016ea:	b580      	push	{r7, lr}
  80016ec:	b086      	sub	sp, #24
@@ -2713,9 +2716,9 @@ uint8_t *transmit_data_packet(Data_packet* transmit_data, uint8_t *buffer)
  80017aa:	bd80      	pop	{r7, pc}
 
 080017ac <ComputeCRC>:
-
-    return (buffer);
-}*/
+	else
+    	return (1);
+}
 
 uint16_t ComputeCRC(uint16_t crc, uint8_t data, uint16_t polynomial)
 {
@@ -2986,8 +2989,8 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
  8001940:	d104      	bne.n	800194c <HAL_GPIO_EXTI_Callback+0x1c>
 	{
 		// RECEIVING DATA - - - - - - - - - - - - - - - - - - - - - - - -
-		LoRa_receive(&myLoRa, read_data, 6);
- 8001942:	2206      	movs	r2, #6
+		LoRa_receive(&myLoRa, read_data, 18);
+ 8001942:	2212      	movs	r2, #18
  8001944:	4903      	ldr	r1, [pc, #12]	@ (8001954 <HAL_GPIO_EXTI_Callback+0x24>)
  8001946:	4804      	ldr	r0, [pc, #16]	@ (8001958 <HAL_GPIO_EXTI_Callback+0x28>)
  8001948:	f7ff fd3a 	bl	80013c0 <LoRa_receive>
@@ -3050,34 +3053,34 @@ int main(void)
  8001986:	4838      	ldr	r0, [pc, #224]	@ (8001a68 <main+0x10c>)
  8001988:	f7ff fe21 	bl	80015ce <Lora_SetDefaultConfig>
 
-	myLoRa.hSPIx                 = &hspi1;
+	myLoRa.hSPIx                = &hspi1;
  800198c:	4b36      	ldr	r3, [pc, #216]	@ (8001a68 <main+0x10c>)
  800198e:	4a37      	ldr	r2, [pc, #220]	@ (8001a6c <main+0x110>)
  8001990:	619a      	str	r2, [r3, #24]
 
-	myLoRa.CS_port               = SPI1_NSS_GPIO_Port;
+	myLoRa.CS_port              = SPI1_NSS_GPIO_Port;
  8001992:	4b35      	ldr	r3, [pc, #212]	@ (8001a68 <main+0x10c>)
  8001994:	f04f 4290 	mov.w	r2, #1207959552	@ 0x48000000
  8001998:	601a      	str	r2, [r3, #0]
-	myLoRa.CS_pin                = SPI1_NSS_Pin;
+	myLoRa.CS_pin               = SPI1_NSS_Pin;
  800199a:	4b33      	ldr	r3, [pc, #204]	@ (8001a68 <main+0x10c>)
  800199c:	f44f 4200 	mov.w	r2, #32768	@ 0x8000
  80019a0:	809a      	strh	r2, [r3, #4]
 
-	myLoRa.reset_port            = RFM98RESET_GPIO_Port;
+	myLoRa.reset_port           = RFM98RESET_GPIO_Port;
  80019a2:	4b31      	ldr	r3, [pc, #196]	@ (8001a68 <main+0x10c>)
  80019a4:	f04f 4290 	mov.w	r2, #1207959552	@ 0x48000000
  80019a8:	609a      	str	r2, [r3, #8]
-	myLoRa.reset_pin             = RFM98RESET_Pin;
+	myLoRa.reset_pin            = RFM98RESET_Pin;
  80019aa:	4b2f      	ldr	r3, [pc, #188]	@ (8001a68 <main+0x10c>)
  80019ac:	2240      	movs	r2, #64	@ 0x40
  80019ae:	819a      	strh	r2, [r3, #12]
 
-	myLoRa.DIO0_port						 = DIO0_GPIO_Port;
+	myLoRa.DIO0_port			= DIO0_GPIO_Port;
  80019b0:	4b2d      	ldr	r3, [pc, #180]	@ (8001a68 <main+0x10c>)
  80019b2:	f04f 4290 	mov.w	r2, #1207959552	@ 0x48000000
  80019b6:	611a      	str	r2, [r3, #16]
-	myLoRa.DIO0_pin							 = DIO0_Pin;
+	myLoRa.DIO0_pin				= DIO0_Pin;
  80019b8:	4b2b      	ldr	r3, [pc, #172]	@ (8001a68 <main+0x10c>)
  80019ba:	f44f 7200 	mov.w	r2, #512	@ 0x200
  80019be:	829a      	strh	r2, [r3, #20]
@@ -3114,12 +3117,12 @@ int main(void)
 	LoRa_startReceiving(&myLoRa);
  80019f2:	481d      	ldr	r0, [pc, #116]	@ (8001a68 <main+0x10c>)
  80019f4:	f7ff fcd8 	bl	80013a8 <LoRa_startReceiving>
-	/*write_data[0]=0x3B;
+	write_data[0]=0x3B;
 	write_data[1] = rand() % 100 + 1;
+	strcpy(write_data + 2, "Baklava");
+	*/
 
-	strcpy(write_data + 2, "Baklava");*/
-
-	Data_packet my_data = {.c_stat = 1, .altitude = 3131.657, .pressure = 1024.567, 
+	Data_packet_transmit my_data = {.c_stat = 1, .altitude = 3131.657, .pressure = 1024.567, 
  80019f8:	1d3b      	adds	r3, r7, #4
  80019fa:	2200      	movs	r2, #0
  80019fc:	601a      	str	r2, [r3, #0]
@@ -3147,7 +3150,7 @@ int main(void)
  8001a2a:	fb01 f303 	mul.w	r3, r1, r3
  8001a2e:	1ad3      	subs	r3, r2, r3
  8001a30:	3301      	adds	r3, #1
-	Data_packet my_data = {.c_stat = 1, .altitude = 3131.657, .pressure = 1024.567, 
+	Data_packet_transmit my_data = {.c_stat = 1, .altitude = 3131.657, .pressure = 1024.567, 
  8001a32:	ee07 3a90 	vmov	s15, r3
  8001a36:	eef8 7ae7 	vcvt.f32.s32	s15, s15
  8001a3a:	edc7 7a04 	vstr	s15, [r7, #16]
@@ -3167,22 +3170,22 @@ int main(void)
  8001a54:	490d      	ldr	r1, [pc, #52]	@ (8001a8c <main+0x130>)
  8001a56:	4804      	ldr	r0, [pc, #16]	@ (8001a68 <main+0x10c>)
  8001a58:	f7ff fc4e 	bl	80012f8 <LoRa_transmit>
-	HAL_Delay(3500);
- 8001a5c:	f640 50ac 	movw	r0, #3500	@ 0xdac
+	HAL_Delay(1500);
+ 8001a5c:	f240 50dc 	movw	r0, #1500	@ 0x5dc
  8001a60:	f000 fcb4 	bl	80023cc <HAL_Delay>
   {
  8001a64:	bf00      	nop
  8001a66:	e7c7      	b.n	80019f8 <main+0x9c>
  8001a68:	200000a8 	.word	0x200000a8
- 8001a6c:	200000f0 	.word	0x200000f0
+ 8001a6c:	200000fc 	.word	0x200000fc
  8001a70:	08006bc8 	.word	0x08006bc8
- 8001a74:	200001bc 	.word	0x200001bc
+ 8001a74:	200001c8 	.word	0x200001c8
  8001a78:	4543ba83 	.word	0x4543ba83
  8001a7c:	44801225 	.word	0x44801225
  8001a80:	51eb851f 	.word	0x51eb851f
  8001a84:	41f6eb85 	.word	0x41f6eb85
  8001a88:	41adc6a8 	.word	0x41adc6a8
- 8001a8c:	200000dc 	.word	0x200000dc
+ 8001a8c:	200000e8 	.word	0x200000e8
 
 08001a90 <SystemClock_Config>:
 /**
@@ -3410,7 +3413,7 @@ void MX_SPI1_Init(void)
  8001ba2:	bf00      	nop
  8001ba4:	bd80      	pop	{r7, pc}
  8001ba6:	bf00      	nop
- 8001ba8:	200000f0 	.word	0x200000f0
+ 8001ba8:	200000fc 	.word	0x200000fc
  8001bac:	40013000 	.word	0x40013000
 
 08001bb0 <MX_SPI2_Init>:
@@ -3498,7 +3501,7 @@ void MX_SPI2_Init(void)
  8001c1e:	bf00      	nop
  8001c20:	bd80      	pop	{r7, pc}
  8001c22:	bf00      	nop
- 8001c24:	20000154 	.word	0x20000154
+ 8001c24:	20000160 	.word	0x20000160
  8001c28:	40003800 	.word	0x40003800
 
 08001c2c <HAL_SPI_MspInit>:
@@ -4187,8 +4190,8 @@ void *_sbrk(ptrdiff_t incr)
  8001f46:	bd80      	pop	{r7, pc}
  8001f48:	20020000 	.word	0x20020000
  8001f4c:	00000400 	.word	0x00000400
- 8001f50:	200001b8 	.word	0x200001b8
- 8001f54:	20000710 	.word	0x20000710
+ 8001f50:	200001c4 	.word	0x200001c4
+ 8001f54:	20000720 	.word	0x20000720
 
 08001f58 <SystemInit>:
   * @param  None
@@ -4327,7 +4330,7 @@ void MX_USART1_UART_Init(void)
 }
  8002008:	bf00      	nop
  800200a:	bd80      	pop	{r7, pc}
- 800200c:	200001bc 	.word	0x200001bc
+ 800200c:	200001c8 	.word	0x200001c8
  8002010:	40013800 	.word	0x40013800
 
 08002014 <MX_USART2_UART_Init>:
@@ -4436,7 +4439,7 @@ void MX_USART2_UART_Init(void)
  80020a2:	bf00      	nop
  80020a4:	bd80      	pop	{r7, pc}
  80020a6:	bf00      	nop
- 80020a8:	20000250 	.word	0x20000250
+ 80020a8:	2000025c 	.word	0x2000025c
  80020ac:	40004400 	.word	0x40004400
 
 080020b0 <HAL_UART_MspInit>:
@@ -4683,7 +4686,7 @@ void MX_USB_PCD_Init(void)
 }
  8002224:	bf00      	nop
  8002226:	bd80      	pop	{r7, pc}
- 8002228:	200002e4 	.word	0x200002e4
+ 8002228:	200002f0 	.word	0x200002f0
  800222c:	40005c00 	.word	0x40005c00
 
 08002230 <HAL_PCD_MspInit>:
@@ -4850,7 +4853,7 @@ LoopForever:
   ldr r2, =_sbss
  80022e0:	20000068 	.word	0x20000068
   ldr r4, =_ebss
- 80022e4:	20000710 	.word	0x20000710
+ 80022e4:	2000071c 	.word	0x2000071c
 
 080022e8 <ADC1_2_IRQHandler>:
  * @retval : None
@@ -5024,7 +5027,7 @@ __weak void HAL_IncTick(void)
  80023a4:	46bd      	mov	sp, r7
  80023a6:	f85d 7b04 	ldr.w	r7, [sp], #4
  80023aa:	4770      	bx	lr
- 80023ac:	200005c0 	.word	0x200005c0
+ 80023ac:	200005cc 	.word	0x200005cc
  80023b0:	20000008 	.word	0x20000008
 
 080023b4 <HAL_GetTick>:
@@ -5045,7 +5048,7 @@ __weak uint32_t HAL_GetTick(void)
  80023c0:	f85d 7b04 	ldr.w	r7, [sp], #4
  80023c4:	4770      	bx	lr
  80023c6:	bf00      	nop
- 80023c8:	200005c0 	.word	0x200005c0
+ 80023c8:	200005cc 	.word	0x200005cc
 
 080023cc <HAL_Delay>:
   *       implementations in user file.
@@ -14538,7 +14541,7 @@ HAL_StatusTypeDef USB_DevInit(USB_TypeDef *USBx, USB_CfgTypeDef cfg)
  8005bf0:	08005d3b 	.word	0x08005d3b
  8005bf4:	08005d73 	.word	0x08005d73
  8005bf8:	08005d97 	.word	0x08005d97
- 8005bfc:	200005c4 	.word	0x200005c4
+ 8005bfc:	200005d0 	.word	0x200005d0
 
 08005c00 <stdio_exit_handler>:
  8005c00:	4a02      	ldr	r2, [pc, #8]	@ (8005c0c <stdio_exit_handler+0xc>)
@@ -14573,9 +14576,9 @@ HAL_StatusTypeDef USB_DevInit(USB_TypeDef *USBx, USB_CfgTypeDef cfg)
  8005c44:	f000 bb06 	b.w	8006254 <_fflush_r>
  8005c48:	bd10      	pop	{r4, pc}
  8005c4a:	bf00      	nop
- 8005c4c:	200005c4 	.word	0x200005c4
- 8005c50:	2000062c 	.word	0x2000062c
- 8005c54:	20000694 	.word	0x20000694
+ 8005c4c:	200005d0 	.word	0x200005d0
+ 8005c50:	20000638 	.word	0x20000638
+ 8005c54:	200006a0 	.word	0x200006a0
 
 08005c58 <global_stdio_init.part.0>:
  8005c58:	b510      	push	{r4, lr}
@@ -14596,21 +14599,21 @@ HAL_StatusTypeDef USB_DevInit(USB_TypeDef *USBx, USB_CfgTypeDef cfg)
  8005c7e:	e8bd 4010 	ldmia.w	sp!, {r4, lr}
  8005c82:	2112      	movs	r1, #18
  8005c84:	f7ff bf86 	b.w	8005b94 <std>
- 8005c88:	200006fc 	.word	0x200006fc
- 8005c8c:	200005c4 	.word	0x200005c4
+ 8005c88:	20000708 	.word	0x20000708
+ 8005c8c:	200005d0 	.word	0x200005d0
  8005c90:	08005c01 	.word	0x08005c01
 
 08005c94 <__sfp_lock_acquire>:
  8005c94:	4801      	ldr	r0, [pc, #4]	@ (8005c9c <__sfp_lock_acquire+0x8>)
  8005c96:	f000 b92a 	b.w	8005eee <__retarget_lock_acquire_recursive>
  8005c9a:	bf00      	nop
- 8005c9c:	20000705 	.word	0x20000705
+ 8005c9c:	20000711 	.word	0x20000711
 
 08005ca0 <__sfp_lock_release>:
  8005ca0:	4801      	ldr	r0, [pc, #4]	@ (8005ca8 <__sfp_lock_release+0x8>)
  8005ca2:	f000 b925 	b.w	8005ef0 <__retarget_lock_release_recursive>
  8005ca6:	bf00      	nop
- 8005ca8:	20000705 	.word	0x20000705
+ 8005ca8:	20000711 	.word	0x20000711
 
 08005cac <__sinit>:
  8005cac:	b510      	push	{r4, lr}
@@ -14630,7 +14633,7 @@ HAL_StatusTypeDef USB_DevInit(USB_TypeDef *USBx, USB_CfgTypeDef cfg)
  8005cd0:	e7f2      	b.n	8005cb8 <__sinit+0xc>
  8005cd2:	bf00      	nop
  8005cd4:	08005c19 	.word	0x08005c19
- 8005cd8:	200006fc 	.word	0x200006fc
+ 8005cd8:	20000708 	.word	0x20000708
 
 08005cdc <_fwalk_sglue>:
  8005cdc:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
@@ -14764,7 +14767,7 @@ HAL_StatusTypeDef USB_DevInit(USB_TypeDef *USBx, USB_CfgTypeDef cfg)
  8005dfe:	b103      	cbz	r3, 8005e02 <_close_r+0x1a>
  8005e00:	6023      	str	r3, [r4, #0]
  8005e02:	bd38      	pop	{r3, r4, r5, pc}
- 8005e04:	20000700 	.word	0x20000700
+ 8005e04:	2000070c 	.word	0x2000070c
 
 08005e08 <_gettimeofday_r>:
  8005e08:	b538      	push	{r3, r4, r5, lr}
@@ -14782,7 +14785,7 @@ HAL_StatusTypeDef USB_DevInit(USB_TypeDef *USBx, USB_CfgTypeDef cfg)
  8005e22:	6023      	str	r3, [r4, #0]
  8005e24:	bd38      	pop	{r3, r4, r5, pc}
  8005e26:	bf00      	nop
- 8005e28:	20000700 	.word	0x20000700
+ 8005e28:	2000070c 	.word	0x2000070c
 
 08005e2c <_lseek_r>:
  8005e2c:	b538      	push	{r3, r4, r5, lr}
@@ -14800,7 +14803,7 @@ HAL_StatusTypeDef USB_DevInit(USB_TypeDef *USBx, USB_CfgTypeDef cfg)
  8005e46:	b103      	cbz	r3, 8005e4a <_lseek_r+0x1e>
  8005e48:	6023      	str	r3, [r4, #0]
  8005e4a:	bd38      	pop	{r3, r4, r5, pc}
- 8005e4c:	20000700 	.word	0x20000700
+ 8005e4c:	2000070c 	.word	0x2000070c
 
 08005e50 <_read_r>:
  8005e50:	b538      	push	{r3, r4, r5, lr}
@@ -14818,7 +14821,7 @@ HAL_StatusTypeDef USB_DevInit(USB_TypeDef *USBx, USB_CfgTypeDef cfg)
  8005e6a:	b103      	cbz	r3, 8005e6e <_read_r+0x1e>
  8005e6c:	6023      	str	r3, [r4, #0]
  8005e6e:	bd38      	pop	{r3, r4, r5, pc}
- 8005e70:	20000700 	.word	0x20000700
+ 8005e70:	2000070c 	.word	0x2000070c
 
 08005e74 <_write_r>:
  8005e74:	b538      	push	{r3, r4, r5, lr}
@@ -14836,7 +14839,7 @@ HAL_StatusTypeDef USB_DevInit(USB_TypeDef *USBx, USB_CfgTypeDef cfg)
  8005e8e:	b103      	cbz	r3, 8005e92 <_write_r+0x1e>
  8005e90:	6023      	str	r3, [r4, #0]
  8005e92:	bd38      	pop	{r3, r4, r5, pc}
- 8005e94:	20000700 	.word	0x20000700
+ 8005e94:	2000070c 	.word	0x2000070c
 
 08005e98 <__errno>:
  8005e98:	4b01      	ldr	r3, [pc, #4]	@ (8005ea0 <__errno+0x8>)
@@ -14993,7 +14996,7 @@ HAL_StatusTypeDef USB_DevInit(USB_TypeDef *USBx, USB_CfgTypeDef cfg)
  8005fd6:	e7ca      	b.n	8005f6e <_free_r+0x22>
  8005fd8:	bd38      	pop	{r3, r4, r5, pc}
  8005fda:	bf00      	nop
- 8005fdc:	2000070c 	.word	0x2000070c
+ 8005fdc:	20000718 	.word	0x20000718
 
 08005fe0 <malloc>:
  8005fe0:	4b02      	ldr	r3, [pc, #8]	@ (8005fec <malloc+0xc>)
@@ -15031,7 +15034,7 @@ HAL_StatusTypeDef USB_DevInit(USB_TypeDef *USBx, USB_CfgTypeDef cfg)
  800602a:	d1f2      	bne.n	8006012 <sbrk_aligned+0x22>
  800602c:	e7ef      	b.n	800600e <sbrk_aligned+0x1e>
  800602e:	bf00      	nop
- 8006030:	20000708 	.word	0x20000708
+ 8006030:	20000714 	.word	0x20000714
 
 08006034 <_malloc_r>:
  8006034:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
@@ -15141,19 +15144,19 @@ HAL_StatusTypeDef USB_DevInit(USB_TypeDef *USBx, USB_CfgTypeDef cfg)
  800612a:	6005      	str	r5, [r0, #0]
  800612c:	e7d6      	b.n	80060dc <_malloc_r+0xa8>
  800612e:	bf00      	nop
- 8006130:	2000070c 	.word	0x2000070c
+ 8006130:	20000718 	.word	0x20000718
 
 08006134 <__malloc_lock>:
  8006134:	4801      	ldr	r0, [pc, #4]	@ (800613c <__malloc_lock+0x8>)
  8006136:	f7ff beda 	b.w	8005eee <__retarget_lock_acquire_recursive>
  800613a:	bf00      	nop
- 800613c:	20000704 	.word	0x20000704
+ 800613c:	20000710 	.word	0x20000710
 
 08006140 <__malloc_unlock>:
  8006140:	4801      	ldr	r0, [pc, #4]	@ (8006148 <__malloc_unlock+0x8>)
  8006142:	f7ff bed5 	b.w	8005ef0 <__retarget_lock_release_recursive>
  8006146:	bf00      	nop
- 8006148:	20000704 	.word	0x20000704
+ 8006148:	20000710 	.word	0x20000710
 
 0800614c <__sflush_r>:
  800614c:	f9b1 200c 	ldrsh.w	r2, [r1, #12]
@@ -15342,7 +15345,7 @@ HAL_StatusTypeDef USB_DevInit(USB_TypeDef *USBx, USB_CfgTypeDef cfg)
  80062de:	b103      	cbz	r3, 80062e2 <_sbrk_r+0x1a>
  80062e0:	6023      	str	r3, [r4, #0]
  80062e2:	bd38      	pop	{r3, r4, r5, pc}
- 80062e4:	20000700 	.word	0x20000700
+ 80062e4:	2000070c 	.word	0x2000070c
 
 080062e8 <abort>:
  80062e8:	b508      	push	{r3, lr}
@@ -16144,7 +16147,7 @@ HAL_StatusTypeDef USB_DevInit(USB_TypeDef *USBx, USB_CfgTypeDef cfg)
  8006a36:	6023      	str	r3, [r4, #0]
  8006a38:	bd38      	pop	{r3, r4, r5, pc}
  8006a3a:	bf00      	nop
- 8006a3c:	20000700 	.word	0x20000700
+ 8006a3c:	2000070c 	.word	0x2000070c
 
 08006a40 <_getpid_r>:
  8006a40:	f7fb b9c3 	b.w	8001dca <_getpid>
@@ -16247,7 +16250,7 @@ HAL_StatusTypeDef USB_DevInit(USB_TypeDef *USBx, USB_CfgTypeDef cfg)
  8006b22:	6023      	str	r3, [r4, #0]
  8006b24:	bd38      	pop	{r3, r4, r5, pc}
  8006b26:	bf00      	nop
- 8006b28:	20000700 	.word	0x20000700
+ 8006b28:	2000070c 	.word	0x2000070c
 
 08006b2c <_isatty_r>:
  8006b2c:	b538      	push	{r3, r4, r5, lr}
@@ -16263,7 +16266,7 @@ HAL_StatusTypeDef USB_DevInit(USB_TypeDef *USBx, USB_CfgTypeDef cfg)
  8006b42:	b103      	cbz	r3, 8006b46 <_isatty_r+0x1a>
  8006b44:	6023      	str	r3, [r4, #0]
  8006b46:	bd38      	pop	{r3, r4, r5, pc}
- 8006b48:	20000700 	.word	0x20000700
+ 8006b48:	2000070c 	.word	0x2000070c
 
 08006b4c <_gettimeofday>:
  8006b4c:	4b02      	ldr	r3, [pc, #8]	@ (8006b58 <_gettimeofday+0xc>)
@@ -16271,7 +16274,7 @@ HAL_StatusTypeDef USB_DevInit(USB_TypeDef *USBx, USB_CfgTypeDef cfg)
  8006b50:	601a      	str	r2, [r3, #0]
  8006b52:	f04f 30ff 	mov.w	r0, #4294967295
  8006b56:	4770      	bx	lr
- 8006b58:	20000700 	.word	0x20000700
+ 8006b58:	2000070c 	.word	0x2000070c
 
 08006b5c <_init>:
  8006b5c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}

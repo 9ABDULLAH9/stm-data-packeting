@@ -44,7 +44,7 @@
 
 //typedef
 
-typedef struct data_packet_t
+typedef struct data_packet
 {
 	uint8_t c_stat;
 	float altitude;
@@ -55,7 +55,7 @@ typedef struct data_packet_t
 	uint16_t crc;
 }Data_packet_transmit;
 
-typedef struct data_packet_r
+typedef struct data_packet
 {
 	uint8_t c_stat;//
 	uint16_t altitude;//
