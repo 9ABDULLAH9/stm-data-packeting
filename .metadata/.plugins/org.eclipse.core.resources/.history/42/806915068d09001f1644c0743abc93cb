@@ -73,12 +73,12 @@ typedef union {
 
 
 // Fonksiyon Prototipleri
-float uInt8ToFloat(float* value, uint8_t *buffer, uint8_t i);
-void floatToUint8(float value, uint8_t *buffer, uint8_t i);
 void transmit_data_packet(Data_packet_transmit* transmit_data, uint8_t *buffer);
-uint8_t recive_data_packet(Data_packet_recieve* recieve_data, uint8_t *buffer);
+uint8_t *recive_data_packet(Data_packet_recieve* recieve_data, uint8_t *buffer);
 uint16_t RF95_ComputeCRC(uint8_t *buffer, uint8_t bufferLength, uint8_t crcType);
 uint16_t ComputeCRC(uint16_t crc, uint8_t data, uint16_t polynomial);
+void floatToUint8(float value, uint8_t *buffer, uint8_t i);
+float uInt8ToFloat(float* value, uint8_t *buffer, uint8_t i);
 
 
 #endif // FUNCTION_H

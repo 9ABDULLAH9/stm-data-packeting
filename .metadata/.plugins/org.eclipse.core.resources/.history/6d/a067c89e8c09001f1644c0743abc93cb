@@ -31,7 +31,7 @@ float uInt8ToFloat(float* value, uint8_t *buffer, uint8_t i)
 	return(unionVal.f);
 }
 
-void transmit_data_packet(Data_packet_transmit* transmit_data, uint8_t *buffer)
+uint8_t *transmit_data_packet(Data_packet_transmit* transmit_data, uint8_t *buffer)
 {
     
 	uint16_t altitude;
@@ -59,11 +59,13 @@ void transmit_data_packet(Data_packet_transmit* transmit_data, uint8_t *buffer)
     buffer[17] = (uint8_t)convert16bittoLSB(crc);
 
     transmit_data->crc = crc; 
+
+    return (buffer);
 }
 
 
 
-uint8_t recive_data_packet(Data_packet_recieve* recieve_data, uint8_t *buffer)
+uint8_t *recive_data_packet(Data_packet_recieve* recieve_data, uint8_t *buffer)
 {
 	uint16_t crc = RF95_ComputeCRC((uint8_t*)buffer, 16, CRC_TYPE_IBM);
 	uint16_t crc_control = convert8bitto16bit(buffer[17], buffer[16]);
@@ -82,10 +84,10 @@ uint8_t recive_data_packet(Data_packet_recieve* recieve_data, uint8_t *buffer)
 
 		uInt8ToFloat(&(recieve_data->longtitude), buffer, 12);
 
-		return((uint8_t)0);
+		return(0);
 	}
 	else
-    	return ((uint8_t)1);
+    	return (1);
 }
 
 uint16_t ComputeCRC(uint16_t crc, uint8_t data, uint16_t polynomial)
