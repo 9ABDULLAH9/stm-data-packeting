@@ -99,12 +99,10 @@ uint16_t ComputeCRC(uint16_t crc, uint8_t data, uint16_t polynomial)
 			crc |= polynomial;
 		}
 		else
-		{
 			crc <<= 1;
-		}
 		data <<= 1;
 	}
-	return crc;
+	return (crc);
 }
 
 
@@ -118,16 +116,10 @@ uint16_t RF95_ComputeCRC(uint8_t *buffer, uint8_t bufferLength, uint8_t crcType)
 	crc = (crcType == CRC_TYPE_IBM) ? CRC_IBM_SEED : CRC_CCITT_SEED;
 
 	for(i = 0; i < bufferLength; i++)
-	{
 		crc = ComputeCRC(crc, buffer[i], polynomial);
-	}
 
 	if(crcType == CRC_TYPE_IBM)
-	{
-		return crc;
-	}
+		return (crc);
 	else
-	{
-		return (uint16_t)(~crc);
-	}
+		return ((uint16_t)(~crc));
 }
