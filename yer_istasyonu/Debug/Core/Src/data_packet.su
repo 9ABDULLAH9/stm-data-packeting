@@ -1,2 +1,2 @@
-../Core/Src/data_packet.c:11:6:floatToUint8	32	static
-../Core/Src/data_packet.c:23:9:transmit_data_packet	56	static
+../Core/Src/data_packet.c:10:6:floatToUint8	32	static
+../Core/Src/data_packet.c:22:10:transmit_data_packet	48	static

@@ -43,7 +43,7 @@ typedef union {
 
 
 // Fonksiyon Prototipleri
-uint8_t *transmit_data_packet(Data_packet* transmit_data);
+uint8_t transmit_data_packet(Data_packet* transmit_data);
 void floatToUint8(float value, uint8_t *buffer, uint8_t i,
 						uint8_t ii, uint8_t iii, uint8_t iv);
 
