@@ -147,40 +147,9 @@ int main(void)
 	LoRa_startReceiving(&myLoRa);
 	//---------------------------------------------------------------
 
-
-
-	/*Data_packet my_data = {.c_stat = 1, .altitude = 3131.657, .pressure = 1024.567, 
+	Data_packet my_data = {.c_stat = 1, .altitude = 3131.657, .pressure = 1024.567, 
 	.bat_level = 17.55, .latitude = 30.865, .longtitude = 21.722};
-	*buffer = transmit_data_packet(&my_data);*/
-
-	Data_packet transmit_data = {.c_stat = 1, .altitude = 3131.657, .pressure = 1024.567, 
-	.bat_level = 17.55, .latitude = 30.865, .longtitude = 21.722};
-
-	uint16_t altitude;
-	uint8_t bat_level;
-
-    buffer[0] = transmit_data.c_stat;
-
-    altitude = (uint16_t)transmit_data.altitude;
-    buffer[1] = (uint8_t)convert16bittoMSB(altitude); // Yüksek byte
-    buffer[2] = (uint8_t)convert16bittoLSB(altitude);        // Düşük byte
-
-	floatToUint8(transmit_data.pressure, buffer, 3, 4, 5, 6);
-
-	bat_level = (uint8_t)transmit_data.bat_level;
-    buffer[7] = bat_level;
-
-	floatToUint8(transmit_data.latitude, buffer, 8, 9, 10, 11);
-
-	floatToUint8(transmit_data.longtitude, buffer, 12, 13, 14, 15);
-
-    
-    uint16_t crc = RF95_ComputeCRC((uint8_t*)buffer, 16, CRC_TYPE_IBM);
-
-    buffer[16] = (uint8_t)convert16bittoMSB(crc);
-    buffer[17] = (uint8_t)convert16bittoLSB(crc);
-
-    transmit_data.crc = crc;
+	transmit_data_packet(&my_data, buffer);
 
   /* USER CODE END 2 */
 
