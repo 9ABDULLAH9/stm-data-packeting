@@ -87,9 +87,7 @@ uint8_t *recive_data_packet(Data_packet_recieve* recieve_data, uint8_t *buffer)
 		return(0);
 	}
 	else
-	{
     	return (1);
-	}
 }
 
 uint16_t ComputeCRC(uint16_t crc, uint8_t data, uint16_t polynomial)
