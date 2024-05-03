@@ -1,0 +1,6 @@
+#include "data_packet.h"
+
+uint32_t* transmit_data_packet(Data_packet* transmit_data)
+{
+	transmit_data->latitude
+}
