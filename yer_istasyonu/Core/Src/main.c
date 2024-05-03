@@ -53,12 +53,8 @@
 
 /* USER CODE BEGIN PV */
 LoRa 		myLoRa;
-uint8_t 	read_data[6];
-uint8_t 	write_data[20];
-uint8_t 	send_data[100];
-int			RSSI;
-uint8_t 	str[100];
-uint8_t 	pot_data;
+uint8_t 	read_data[18];
+uint8_t 	send_data[18];
 uint8_t 	buffer[18];
 /* USER CODE END PV */
 
@@ -71,10 +67,9 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	if(GPIO_Pin == DIO0_Pin)
 	{
 		// RECEIVING DATA - - - - - - - - - - - - - - - - - - - - - - - -
-		LoRa_receive(&myLoRa, read_data, 6);
+		LoRa_receive(&myLoRa, read_data, 18);
   	}
 }
-
 
 /* USER CODE END PFP */
 
@@ -123,16 +118,16 @@ int main(void)
 	// MODULE SETTINGS ----------------------------------------------
 	Lora_SetDefaultConfig(&myLoRa);
 
-	myLoRa.hSPIx                 = &hspi1;
+	myLoRa.hSPIx                = &hspi1;
 
-	myLoRa.CS_port               = SPI1_NSS_GPIO_Port;
-	myLoRa.CS_pin                = SPI1_NSS_Pin;
+	myLoRa.CS_port              = SPI1_NSS_GPIO_Port;
+	myLoRa.CS_pin               = SPI1_NSS_Pin;
 
-	myLoRa.reset_port            = RFM98RESET_GPIO_Port;
-	myLoRa.reset_pin             = RFM98RESET_Pin;
+	myLoRa.reset_port           = RFM98RESET_GPIO_Port;
+	myLoRa.reset_pin            = RFM98RESET_Pin;
 
-	myLoRa.DIO0_port						 = DIO0_GPIO_Port;
-	myLoRa.DIO0_pin							 = DIO0_Pin;
+	myLoRa.DIO0_port			= DIO0_GPIO_Port;
+	myLoRa.DIO0_pin				= DIO0_Pin;
 	
 	LoRa_reset(&myLoRa);
 
@@ -147,10 +142,6 @@ int main(void)
 	LoRa_startReceiving(&myLoRa);
 	//---------------------------------------------------------------
 
-	/*Data_packet my_data = {.c_stat = 1, .altitude = 3131.657, .pressure = 1024.567, 
-	.bat_level = 17.55, .latitude = 30.865, .longtitude = 21.722};
-	transmit_data_packet(&my_data, buffer);*/
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -161,17 +152,18 @@ int main(void)
 	
 	// SENDING DATA - - - - - - - - - - - - - - - - - - - - - - - - -
 
-	/*write_data[0]=0x3B;
+	/*
+	write_data[0]=0x3B;
 	write_data[1] = rand() % 100 + 1;
-
-	strcpy(write_data + 2, "Baklava");*/
+	strcpy(write_data + 2, "Baklava");
+	*/
 
 	Data_packet_transmit my_data = {.c_stat = 1, .altitude = 3131.657, .pressure = 1024.567, 
 	.bat_level = rand() % 100 + 1, .latitude = 30.865, .longtitude = 21.722};
 	transmit_data_packet(&my_data, buffer);
 
 	LoRa_transmit(&myLoRa, buffer, 18, 150);
-	HAL_Delay(3500);
+	HAL_Delay(1500);
 
     /* USER CODE END WHILE */
 
